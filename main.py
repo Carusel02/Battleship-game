@@ -7,7 +7,6 @@ screen = pygame.display.set_mode((1200, 800))
 pygame.display.set_caption("Love is war")
 icon = pygame.image.load('warship.png')
 pygame.display.set_icon(icon)
-
 # image
 matrix_image = pygame.image.load('matrice_background.png')
 matrix_image = pygame.transform.scale(matrix_image, (443.2, 440))
@@ -24,6 +23,4 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
-
     pygame.display.update()
