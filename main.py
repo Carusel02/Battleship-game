@@ -25,6 +25,10 @@ score = score1
 # ships
 ship1 = pygame.image.load('ship1.png')
 ship1 = pygame.transform.scale(ship1, (40, 40))
+ship2 = pygame.image.load('ship2.png')
+ship2 = pygame.transform.scale(ship2, (40, 40))
+ship3 = pygame.image.load('ship3.png')
+ship3 = pygame.transform.scale(ship3, (40, 40))
 # matrix
 matrix = [[0 for j in range(10)] for i in range(10)]
 matrix[2][3] = 1
