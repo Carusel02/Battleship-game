@@ -14,8 +14,6 @@ matrix_image = pygame.transform.scale(matrix_image, (443.2, 440))
 matrix_X = 0
 matrix_Y = 0
 
-
-
 running = True
 while running:
     # RGB
