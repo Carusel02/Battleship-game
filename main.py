@@ -19,10 +19,15 @@ def game():
     matrix_image = pygame.transform.scale(matrix_image, (498.6, 495))
     matrix_X = 70
     matrix_Y = 100
-    # object
+    # 'X' pos
+    pos_X = matrix_X + 15
+    pos_Y = matrix_Y + 10
+    pos = pygame.image.load('cancel.png')
+    pos = pygame.transform.scale(pos, (40, 40))
+    # 'X' not_here
     not_here_X = matrix_X + 15
     not_here_Y = matrix_Y + 10
-    not_here = pygame.image.load('nothing_here.png')
+    not_here = pygame.image.load('nothing_here (2).png')
     not_here = pygame.transform.scale(not_here, (40, 40))
     # score
     font = pygame.font.Font('freesansbold.ttf', 32)
@@ -59,8 +64,11 @@ def game():
     show_ship2 = 0
     show_ship3 = 0
 
-    cursor_X = 0
-    not_here_X = 0
+    cursor_i = 0
+    cursor_j = 0
+
+    for x in matrix:
+        print(x)
 
     global running
 
@@ -72,48 +80,62 @@ def game():
             # move cursor
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
-                    not_here_X += cell_size
-                    cursor_X += 1
+                    pos_X += cell_size
+                    cursor_i += 1
                 if event.key == pygame.K_LEFT:
-                    not_here_X -= cell_size
-                    cursor_X -= 1
+                    pos_X -= cell_size
+                    cursor_i -= 1
                 if event.key == pygame.K_DOWN:
-                    not_here_Y += cell_size
-                    not_here_X += 1
+                    pos_Y += cell_size
+                    cursor_j += 1
                 if event.key == pygame.K_UP:
-                    not_here_Y -= cell_size
-                    not_here_X -= 1
+                    pos_Y -= cell_size
+                    cursor_j -= 1
                 if event.key == pygame.K_x:
-                    if matrix[not_here_X][cursor_X] == 0:
+                    if matrix[cursor_j][cursor_i] == 0:
                         score = font.render("Hit : NO", True, (255, 255, 255))
-                    if matrix[not_here_X][cursor_X] == 1:
+                        matrix[cursor_j][cursor_i] = -1
+                    if matrix[cursor_j][cursor_i] == 1:
                         score = font.render("Hit : YES 1", True, (255, 255, 255))
                         show_ship1 = 1
-                    if matrix[not_here_X][cursor_X] == 2:
+                    if matrix[cursor_j][cursor_i] == 2:
                         score = font.render("Hit : YES 2", True, (255, 255, 255))
                         show_ship2 = 1
-                    if matrix[not_here_X][cursor_X] == 3:
+                    if matrix[cursor_j][cursor_i] == 3:
                         score = font.render("Hit : YES 3", True, (255, 255, 255))
                         show_ship3 = 1
+                    if matrix[cursor_j][cursor_i] == -1:
+                        score = font.render("Hit : NO", True, (255, 255, 255))
 
-        if not_here_X < (matrix_X + 15):
-            not_here_X = matrix_X + 15
-            cursor_X = 0
-        if not_here_X > (matrix_X + 15 + cell_size * 9):
-            not_here_X = matrix_X + 15 + cell_size * 9
-            cursor_X = 9
-        if not_here_Y < (matrix_Y + 10):
-            not_here_Y = matrix_Y + 10
-            not_here_X = 0
-        if not_here_Y > (matrix_Y + 10 + cell_size * 9):
-            not_here_Y = matrix_Y + 10 + cell_size * 9
-            not_here_X = 9
+        if pos_X < (matrix_X + 15):
+            pos_X = matrix_X + 15
+            cursor_i = 0
+        if pos_X > (matrix_X + 15 + cell_size * 9):
+            pos_X = matrix_X + 15 + cell_size * 9
+            cursor_i = 9
+        if pos_Y < (matrix_Y + 10):
+            pos_Y = matrix_Y + 10
+            cursor_j = 0
+        if pos_Y > (matrix_Y + 10 + cell_size * 9):
+            pos_Y = matrix_Y + 10 + cell_size * 9
+            cursor_j = 9
 
         screen.fill((0, 0, 50))
         screen.blit(matrix_image, (matrix_X, matrix_Y))
         screen.blit(matrix_image, (matrix_X + 548.6, matrix_Y))
-        screen.blit(not_here, (not_here_X, not_here_Y))
         screen.blit(score, (matrix_X + 800, matrix_Y + 600))
+
+        i = 0
+        for x in matrix:
+            j = 0
+            for y in x:
+                if y == -1:
+                    screen.blit(not_here, (matrix_X + 15 + cell_size * j, matrix_Y + 10 + cell_size * i))
+                j += 1
+            i += 1
+
+        screen.blit(pos, (pos_X, pos_Y))
+
         if show_ship1 == 1:
             screen.blit(ship1, (ship1_X, ship1_Y))
         if show_ship2 == 1:
