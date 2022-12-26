@@ -60,7 +60,7 @@ def game():
     show_ship3 = 0
 
     cursor_X = 0
-    cursor_Y = 0
+    not_here_X = 0
 
     global running
 
@@ -79,20 +79,20 @@ def game():
                     cursor_X -= 1
                 if event.key == pygame.K_DOWN:
                     not_here_Y += cell_size
-                    cursor_Y += 1
+                    not_here_X += 1
                 if event.key == pygame.K_UP:
                     not_here_Y -= cell_size
-                    cursor_Y -= 1
+                    not_here_X -= 1
                 if event.key == pygame.K_x:
-                    if matrix[cursor_Y][cursor_X] == 0:
+                    if matrix[not_here_X][cursor_X] == 0:
                         score = font.render("Hit : NO", True, (255, 255, 255))
-                    if matrix[cursor_Y][cursor_X] == 1:
+                    if matrix[not_here_X][cursor_X] == 1:
                         score = font.render("Hit : YES 1", True, (255, 255, 255))
                         show_ship1 = 1
-                    if matrix[cursor_Y][cursor_X] == 2:
+                    if matrix[not_here_X][cursor_X] == 2:
                         score = font.render("Hit : YES 2", True, (255, 255, 255))
                         show_ship2 = 1
-                    if matrix[cursor_Y][cursor_X] == 3:
+                    if matrix[not_here_X][cursor_X] == 3:
                         score = font.render("Hit : YES 3", True, (255, 255, 255))
                         show_ship3 = 1
 
@@ -104,10 +104,10 @@ def game():
             cursor_X = 9
         if not_here_Y < (matrix_Y + 10):
             not_here_Y = matrix_Y + 10
-            cursor_Y = 0
+            not_here_X = 0
         if not_here_Y > (matrix_Y + 10 + cell_size * 9):
             not_here_Y = matrix_Y + 10 + cell_size * 9
-            cursor_Y = 9
+            not_here_X = 9
 
         screen.fill((0, 0, 50))
         screen.blit(matrix_image, (matrix_X, matrix_Y))
