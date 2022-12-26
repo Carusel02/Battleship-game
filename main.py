@@ -32,6 +32,7 @@ ship3 = pygame.transform.scale(ship3, (40, 40))
 # matrix
 matrix = [[0 for j in range(10)] for i in range(10)]
 matrix[2][3] = 1
+cell_size = 48.2
 print(matrix)
 
 cursor_X = 0
@@ -45,18 +46,18 @@ while running:
         # move cursor
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                not_here_X += 48.2
+                not_here_X += cell_size
                 cursor_X += 1
             if event.key == pygame.K_LEFT:
-                not_here_X -= 48.2
+                not_here_X -= cell_size
                 cursor_X -= 1
             if event.key == pygame.K_DOWN:
-                not_here_Y += 48.2
+                not_here_Y += cell_size
                 cursor_Y += 1
             if event.key == pygame.K_UP:
-                not_here_Y -= 48.2
+                not_here_Y -= cell_size
                 cursor_Y -= 1
-            if event.key == pygame.K_KP_ENTER:
+            if event.key == pygame.K_x:
                 if matrix[cursor_Y][cursor_X] != 0:
                     score = score2
                 else:
@@ -65,14 +66,14 @@ while running:
     if not_here_X < (matrix_X + 15):
         not_here_X = matrix_X + 15
         cursor_X = 0
-    if not_here_X > (matrix_X + 15 + 48.2 * 9):
-        not_here_X = matrix_X + 15 + 48.2 * 9
+    if not_here_X > (matrix_X + 15 + cell_size * 9):
+        not_here_X = matrix_X + 15 + cell_size * 9
         cursor_X = 9
     if not_here_Y < (matrix_Y + 10):
         not_here_Y = matrix_Y + 10
         cursor_Y = 0
-    if not_here_Y > (matrix_Y + 10 + 48.2 * 9):
-        not_here_Y = matrix_Y + 10 + 48.2 * 9
+    if not_here_Y > (matrix_Y + 10 + cell_size * 9):
+        not_here_Y = matrix_Y + 10 + cell_size * 9
         cursor_Y = 9
 
     # RGB
