@@ -22,18 +22,20 @@ font = pygame.font.Font('freesansbold.ttf', 32)
 score1 = font.render("Hit : NO", True, (255, 255, 255))
 score2 = font.render("Hit : YES", True, (255, 255, 255))
 score = score1
+# matrix
+matrix = [[0 for j in range(10)] for i in range(10)]
+matrix[3][2] = 1
+cell_size = 48.2
+print(matrix)
 # ships
 ship1 = pygame.image.load('ship1.png')
 ship1 = pygame.transform.scale(ship1, (40, 40))
+ship1_X = matrix_X + 15 + 2 * cell_size
+ship1_Y = matrix_Y + 10 + 3 * cell_size
 ship2 = pygame.image.load('ship2.png')
 ship2 = pygame.transform.scale(ship2, (40, 40))
 ship3 = pygame.image.load('ship3.png')
 ship3 = pygame.transform.scale(ship3, (40, 40))
-# matrix
-matrix = [[0 for j in range(10)] for i in range(10)]
-matrix[2][3] = 1
-cell_size = 48.2
-print(matrix)
 
 cursor_X = 0
 cursor_Y = 0
@@ -78,9 +80,10 @@ while running:
 
     # RGB
     screen.fill((0, 0, 50))
-    screen.blit(matrix_image,(matrix_X, matrix_Y))
+    screen.blit(matrix_image, (matrix_X, matrix_Y))
     screen.blit(matrix_image, (matrix_X + 548.6, matrix_Y))
     screen.blit(not_here, (not_here_X, not_here_Y))
     screen.blit(score, (matrix_X + 800, matrix_Y + 600))
+    screen.blit(ship1, (ship1_X, ship1_Y))
 
     pygame.display.update()
