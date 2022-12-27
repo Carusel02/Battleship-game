@@ -17,7 +17,6 @@ def game():
     contor = 0
     ship_left = 3
     ship_left_cp = 3
-   
     # image
     matrix_image = pygame.image.load('matrice_back.png')
     matrix_image = pygame.transform.scale(matrix_image, (498.6, 495))
@@ -55,8 +54,6 @@ def game():
     ship1cp_X = matrix_X +548.6+ 15 + ship1cp_i * cell_size
     ship1cp_Y = matrix_Y + 10 + ship1cp_j * cell_size
     matrixcp[ship1cp_j][ship1cp_i] = 1
-   
-
 
     ship2 = pygame.image.load('ship2.png')
     ship2 = pygame.transform.scale(ship2, (40, 40))
@@ -71,9 +68,6 @@ def game():
     ship2cp_X = matrix_X +548.6 +15 + ship2cp_i * cell_size
     ship2cp_Y = matrix_Y + 10 + ship2cp_j * cell_size
     matrixcp[ship2cp_j][ship2cp_i] = 2
-   
-
-
 
     ship3 = pygame.image.load('ship3.png')
     ship3 = pygame.transform.scale(ship3, (40, 40))
@@ -97,14 +91,9 @@ def game():
     cursor_i = 0
     cursor_j = 0
 
-   
-
     global running
 
     while running:
-
-       
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -276,7 +265,6 @@ while running:
             if event.key == pygame.K_s:
                 game()
                
-              
 
     screen.fill((0, 0, 50))
     screen.blit(start, (550, 400))
