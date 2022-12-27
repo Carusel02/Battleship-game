@@ -101,8 +101,6 @@ def game():
                     if matrix[cursor_j][cursor_i] == -1:
                         score = font.render("Hit : NO", True, (255, 255, 255))
 
-
-
         if pos_X < (matrix_X + 15):
             pos_X = matrix_X + 15
             cursor_i = 0
@@ -140,7 +138,6 @@ def game():
             screen.blit(ship3, (ship3_X, ship3_Y))
 
         pygame.display.update()
-
 
 font = pygame.font.Font('freesansbold.ttf', 60)
 start = font.render("PRESS S", True, (0, 255, 255))
