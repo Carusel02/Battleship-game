@@ -1,6 +1,5 @@
-import random
 import pygame
-
+import random
 # init
 pygame.init()
 # screen
@@ -11,9 +10,7 @@ icon = pygame.image.load('icon.png')
 pygame.display.set_icon(icon)
 
 running = True
-
 def game():
-
     # image
     matrix_image = pygame.image.load('matrice_back.png')
     matrix_image = pygame.transform.scale(matrix_image, (498.6, 495))
@@ -67,9 +64,6 @@ def game():
     cursor_i = 0
     cursor_j = 0
 
-    for x in matrix:
-        print(x)
-
     global running
 
     while running:
@@ -106,6 +100,8 @@ def game():
                         show_ship3 = 1
                     if matrix[cursor_j][cursor_i] == -1:
                         score = font.render("Hit : NO", True, (255, 255, 255))
+
+
 
         if pos_X < (matrix_X + 15):
             pos_X = matrix_X + 15
@@ -145,8 +141,9 @@ def game():
 
         pygame.display.update()
 
-font = pygame.font.Font('freesansbold.ttf', 40)
-start = font.render("PRESS S", True, (255, 255, 255))
+
+font = pygame.font.Font('freesansbold.ttf', 60)
+start = font.render("PRESS S", True, (0, 255, 255))
 
 while running:
 
@@ -158,5 +155,5 @@ while running:
                 game()
 
     screen.fill((0, 0, 50))
-    screen.blit(start, (550, 400))
+    screen.blit(start, (500, 400))
     pygame.display.update()
