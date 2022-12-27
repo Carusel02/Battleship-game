@@ -3,9 +3,10 @@ import random
 import pygame
 import time
 
+# background sound
+from pygame import mixer
 # terminal colors
 from colorama import Fore
-
 print(Fore.RED + 'python game')
 # init
 pygame.init()
@@ -43,6 +44,11 @@ global font
 
 # function game
 def game():
+    # add background music
+    mixer.music.load('sound/background_mitopia_ost.wav')
+    mixer.music.set_volume(0.3)
+    mixer.music.play(-1)
+
     flag = 0
     ship_left = 3
     ship_left_cp = 3
@@ -161,6 +167,9 @@ def game():
                     cursor_j -= 1
                 if action.key == pygame.K_x:
                     flag = 1
+                    # sound effect
+                    press_hit_sound = mixer.Sound('sound/cross_sound.wav')
+                    press_hit_sound.play()
                     if matrix[cursor_j][cursor_i] == 0:
                         score = font.render("Hit : NO", True, (255, 255, 255))
                         matrix[cursor_j][cursor_i] = -1
