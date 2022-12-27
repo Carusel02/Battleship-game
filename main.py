@@ -18,31 +18,32 @@ pygame.display.set_icon(icon)
 # run program
 running = True
 
+# global ships
+global ship1
+global ship2
+global ship3
 global show_ship1
 global show_ship2
 global show_ship3
 
-global ship1
-global ship2
-global ship3
-
+# global X coord
 global ship1_x
 global ship2_x
 global ship3_x
-
+# global Y coord
 global ship1_y
 global ship2_y
 global ship3_y
 
+# global stuff
 global matrix_x
 global matrix_y
-
 global font
 
 
 # function game
 def game():
-    contor = 0
+    flag = 0
     ship_left = 3
     ship_left_cp = 3
     # image
@@ -58,8 +59,8 @@ def game():
     pos = pygame.image.load('images/cancel.png')
     pos = pygame.transform.scale(pos, (40, 40))
     # 'X' not_here
-    not_here_X = matrix_x + 15
-    not_here_Y = matrix_y + 10
+    initial_value_x = matrix_x + 15
+    initial_value_y = matrix_y + 10
     not_here = pygame.image.load('images/nothing_here (2).png')
     not_here = pygame.transform.scale(not_here, (40, 40))
     # score
@@ -81,14 +82,14 @@ def game():
     ship1_j = random.randint(0, 9)
     global ship1_x
     global ship1_y
-    ship1_x = matrix_x + 15 + ship1_i * cell_size
-    ship1_y = matrix_y + 10 + ship1_j * cell_size
+    ship1_x = initial_value_x + ship1_i * cell_size
+    ship1_y = initial_value_y + ship1_j * cell_size
     matrix[ship1_j][ship1_i] = 1
 
     ship1cp_i = random.randint(0, 9)
     ship1cp_j = random.randint(0, 9)
-    ship1cp_x = matrix_x + 548.6 + 15 + ship1cp_i * cell_size
-    ship1cp_y = matrix_y + 10 + ship1cp_j * cell_size
+    ship1cp_x = initial_value_x + 548.6 + ship1cp_i * cell_size
+    ship1cp_y = initial_value_y + ship1cp_j * cell_size
     matrixcp[ship1cp_j][ship1cp_i] = 1
 
     global ship2
@@ -98,8 +99,8 @@ def game():
     ship2_j = random.randint(0, 9)
     global ship2_x
     global ship2_y
-    ship2_x = matrix_x + 15 + ship2_i * cell_size
-    ship2_y = matrix_y + 10 + ship2_j * cell_size
+    ship2_x = initial_value_x + ship2_i * cell_size
+    ship2_y = initial_value_y + ship2_j * cell_size
     matrix[ship2_j][ship2_i] = 2
 
     ship2cp_i = random.randint(0, 9)
@@ -115,14 +116,14 @@ def game():
     ship3_j = random.randint(0, 9)
     global ship3_x
     global ship3_y
-    ship3_x = matrix_x + 15 + ship3_i * cell_size
-    ship3_y = matrix_y + 10 + ship3_j * cell_size
+    ship3_x = initial_value_x + ship3_i * cell_size
+    ship3_y = initial_value_y + ship3_j * cell_size
     matrix[ship3_j][ship3_i] = 3
 
     ship3cp_i = random.randint(0, 9)
     ship3cp_j = random.randint(0, 9)
-    ship3cp_x = matrix_x + 548.6 + 15 + ship3cp_i * cell_size
-    ship3cp_y = matrix_y + 10 + ship3cp_j * cell_size
+    ship3cp_x = initial_value_x + 548.6 + ship3cp_i * cell_size
+    ship3cp_y = initial_value_y + 10 + ship3cp_j * cell_size
     matrixcp[ship3cp_j][ship3cp_i] = 3
 
     for x in matrixcp:
@@ -141,25 +142,25 @@ def game():
     global running
 
     while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+        for action in pygame.event.get():
+            if action.type == pygame.QUIT:
                 running = False
             # move cursor
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
+            if action.type == pygame.KEYDOWN:
+                if action.key == pygame.K_RIGHT:
                     pos_x += cell_size
                     cursor_i += 1
-                if event.key == pygame.K_LEFT:
+                if action.key == pygame.K_LEFT:
                     pos_x -= cell_size
                     cursor_i -= 1
-                if event.key == pygame.K_DOWN:
+                if action.key == pygame.K_DOWN:
                     pos_y += cell_size
                     cursor_j += 1
-                if event.key == pygame.K_UP:
+                if action.key == pygame.K_UP:
                     pos_y -= cell_size
                     cursor_j -= 1
-                if event.key == pygame.K_x:
-                    contor = 1
+                if action.key == pygame.K_x:
+                    flag = 1
                     if matrix[cursor_j][cursor_i] == 0:
                         score = font.render("Hit : NO", True, (255, 255, 255))
                         matrix[cursor_j][cursor_i] = -1
@@ -185,7 +186,7 @@ def game():
                     if matrix[cursor_j][cursor_i] == -1:
                         score = font.render("Hit : NO", True, (255, 255, 255))
 
-        if contor == 1:
+        if flag == 1:
             temp = bot(matrixcp)
             if temp == 1:
                 ship_left_cp -= 1
@@ -199,19 +200,19 @@ def game():
                 ship_left_cp -= 1
                 ship3cp_x = 0
                 print(3)
-            contor = 0
+            flag = 0
 
-        if pos_x < (matrix_x + 15):
-            pos_x = matrix_x + 15
+        if pos_x < initial_value_x:
+            pos_x = initial_value_x
             cursor_i = 0
-        if pos_x > (matrix_x + 15 + cell_size * 9):
-            pos_x = matrix_x + 15 + cell_size * 9
+        if pos_x > (initial_value_x + cell_size * 9):
+            pos_x = initial_value_x + cell_size * 9
             cursor_i = 9
-        if pos_y < (matrix_y + 10):
-            pos_y = matrix_y + 10
+        if pos_y < initial_value_y:
+            pos_y = initial_value_y
             cursor_j = 0
-        if pos_y > (matrix_y + 10 + cell_size * 9):
-            pos_y = matrix_y + 10 + cell_size * 9
+        if pos_y > (initial_value_y + cell_size * 9):
+            pos_y = initial_value_y + cell_size * 9
             cursor_j = 9
 
         screen.fill((0, 0, 50))
@@ -235,7 +236,7 @@ def game():
             j = 0
             for y in x:
                 if y == -1:
-                    screen.blit(not_here, (matrix_x + 15 + cell_size * j, matrix_y + 10 + cell_size * i))
+                    screen.blit(not_here, (initial_value_x + cell_size * j, initial_value_y + cell_size * i))
                 j += 1
             i += 1
 
@@ -244,37 +245,38 @@ def game():
             j = 0
             for y in x:
                 if y == -1:
-                    screen.blit(not_here, (matrix_x + 548.6 + 15 + cell_size * j, matrix_y + 10 + cell_size * i))
+                    screen.blit(not_here, (initial_value_x + 548.6 + cell_size * j, initial_value_y + cell_size * i))
                 j += 1
             i += 1
 
         screen.blit(pos, (pos_x, pos_y))
 
-        #
+        # verify
         show_ship(show_ship1, show_ship2, show_ship3, ship_left, ship_left_cp)
-
+        # refresh display
         pygame.display.update()
 
 
-def bot(matrixcp):
-    while (1):
+# bot function for hitting
+def bot(matrix):
+    while True:
         i = random.randint(0, 9)
         j = random.randint(0, 9)
 
-        if matrixcp[i][j] == 0:
-            matrixcp[i][j] = -1
+        if matrix[i][j] == 0:
+            matrix[i][j] = -1
             return 0
 
-        if matrixcp[i][j] == 1:
-            matrixcp[i][j] = -1
+        if matrix[i][j] == 1:
+            matrix[i][j] = -1
             return 1
 
-        if matrixcp[i][j] == 2:
-            matrixcp[i][j] = -1
+        if matrix[i][j] == 2:
+            matrix[i][j] = -1
             return 2
 
-        if matrixcp[i][j] == 3:
-            matrixcp[i][j] = -1
+        if matrix[i][j] == 3:
+            matrix[i][j] = -1
             return 3
 
 
