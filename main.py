@@ -36,6 +36,7 @@ def game():
     # score
     font = pygame.font.Font('freesansbold.ttf', 32)
     score = font.render("Hit : NO", True, (255, 255, 255))
+    SCORE = font.render("Scor user: " + (str)(3 - ship_left) + "Scor bot: " + (str)(3 - ship_left_cp), True, (255, 255, 255))
     # matrix
     matrix = [[0 for j in range(10)] for i in range(10)]
     matrixcp = [[0 for j in range(10)] for i in range(10)]
@@ -83,6 +84,9 @@ def game():
     ship3cp_X = matrix_X + 548.6 + 15 + ship3cp_i * cell_size
     ship3cp_Y = matrix_Y + 10 + ship3cp_j * cell_size
     matrixcp[ship3cp_j][ship3cp_i] = 3
+
+    for x in matrixcp:
+        print(x)
 
     show_ship1 = 0
     show_ship2 = 0
@@ -143,12 +147,15 @@ def game():
             if temp == 1:
                 ship_left_cp -= 1
                 ship1cp_X = 0
+                print(1);
             if temp == 2:
                 ship_left_cp -= 1
                 ship2cp_X = 0
+                print(2);
             if temp == 3:
                 ship_left_cp -= 1
                 ship3cp_X = 0
+                print(3);
             contor = 0
 
         if pos_X < (matrix_X + 15):
@@ -168,6 +175,10 @@ def game():
         screen.blit(matrix_image, (matrix_X, matrix_Y))
         screen.blit(matrix_image, (matrix_X + 548.6, matrix_Y))
         screen.blit(score, (matrix_X + 800, matrix_Y + 600))
+
+        SCORE = font.render("Scor user: " + (str)(3 - ship_left) + "    Scor bot: " + (str)(3 - ship_left_cp), True, (255, 255, 255))
+        screen.blit(SCORE, (0, 700))
+
         if ship2cp_X != 0:
             screen.blit(ship2, (ship2cp_X, ship2cp_Y))
         if ship3cp_X != 0:
@@ -203,42 +214,44 @@ def game():
             screen.blit(ship3, (ship3_X, ship3_Y))
 
         if ship_left == 0:
-            font.render("BRAVO BAA", True, (255, 255, 255))
+            score = font.render("BRAVO BAA", True, (255, 255, 255))
+            screen.blit(score, (matrix_X + 400, matrix_Y + 600))
             pygame.display.update()
-            # time.sleep(30)
-            exit()
+            time.sleep(5)
+            # exit()
+            running = 0
 
         if ship_left_cp == 0:
-            font.render("PANARAMA DE JOC", True, (255, 255, 255))
+            score = font.render("PANARAMA DE JOC", True, (255, 255, 255))
+            screen.blit(score, (matrix_X + 400, matrix_Y + 600))
             pygame.display.update()
-            # time.sleep(30)
-            exit()
+            time.sleep(5)
+            # exit()
+            running = 0
 
         pygame.display.update()
 
 
 def bot(matrixcp):
-    i = random.randint(0, 9)
-    j = random.randint(0, 9)
-    if matrixcp[i][j] == 0:
-        matrixcp[i][j] = -1
-        return 0
+    while(1):
+        i = random.randint(0, 9)
+        j = random.randint(0, 9)
 
-    if matrixcp[i][j] == 1:
-        matrixcp[i][j] = -1
-        return 1
+        if matrixcp[i][j] == 0:
+            matrixcp[i][j] = -1
+            return 0
 
-    if matrixcp[i][j] == 2:
-        matrixcp[i][j] = -1
-        return 2
+        if matrixcp[i][j] == 1:
+            matrixcp[i][j] = -1
+            return 1
 
-    if matrixcp[i][j] == 3:
-        matrixcp[i][j] = -1
-        return 3
+        if matrixcp[i][j] == 2:
+            matrixcp[i][j] = -1
+            return 2
 
-    if matrixcp[i][j] == -1:
-        bot(matrixcp)
-
+        if matrixcp[i][j] == 3:
+            matrixcp[i][j] = -1
+            return 3
 
 font = pygame.font.Font('freesansbold.ttf', 40)
 start = font.render("PRESS S", True, (255, 255, 255))
