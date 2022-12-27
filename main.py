@@ -127,25 +127,25 @@ def game():
                     if matrix[cursor_j][cursor_i] == 0:
                         score = font.render("Hit : NO", True, (255, 255, 255))
                         matrix[cursor_j][cursor_i] = -1
-                        break
+                       
                     if matrix[cursor_j][cursor_i] == 1:
                         score = font.render("Hit : YES 1", True, (255, 255, 255))
                         show_ship1 = 1
                         ship_left -=1
-                        matrix[cursor_j][cursor_i] == -1
-                        break
+                        matrix[cursor_j][cursor_i] = -1
+                      
                     if matrix[cursor_j][cursor_i] == 2:
                         score = font.render("Hit : YES 2", True, (255, 255, 255))
                         show_ship2 = 1
                         ship_left -= 1
-                        matrix[cursor_j][cursor_i] == -1
-                        break
+                        matrix[cursor_j][cursor_i] = -1
+                      
                     if matrix[cursor_j][cursor_i] == 3:
                         score = font.render("Hit : YES 3", True, (255, 255, 255))
                         show_ship3 = 1
                         ship_left -= 1
-                        matrix[cursor_j][cursor_i] == -1
-                        break
+                        matrix[cursor_j][cursor_i] = -1
+                       
                     if matrix[cursor_j][cursor_i] == -1:
                         score = font.render("Hit : NO", True, (255, 255, 255))
 
@@ -247,15 +247,15 @@ def bot(matrixcp):
             return 0
 
         if matrixcp[i][j] == 1:
-            matrixcp[i][j] == -1
+            matrixcp[i][j] = -1
             return 1
 
         if matrixcp[i][j] == 2:
-            matrixcp[i][j] == -1
+            matrixcp[i][j] = -1
             return 2
 
         if matrixcp[i][j] == 3:
-            matrixcp[i][j] == -1
+            matrixcp[i][j] = -1
             return 3
 
         if matrixcp[i][j] == -1:
