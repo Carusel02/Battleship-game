@@ -312,6 +312,8 @@ def show_ship(see_ship1, see_ship2, see_ship3, ship_remain, ship_remain_bot):
         score = font.render("YOU WIN", True, (255, 255, 255))
         screen.blit(score, (matrix_x + 400, matrix_y + 600))
         pygame.display.update()
+        mixer.music.stop()
+        win_menu()
         time.sleep(3)
         # exit()
         running = 0
@@ -325,15 +327,45 @@ def show_ship(see_ship1, see_ship2, see_ship3, ship_remain, ship_remain_bot):
         # exit()
         running = 0
 
+
 # display game_over window
 def game_over_menu():
+    time.sleep(0.2)
     game_over_sound = mixer.Sound('sound/lost_game.wav')
     game_over_sound.play()
     image1 = pygame.image.load('images/game_over.png')
     image1 = pygame.transform.scale(image1, (520, 338))
-    image2 = pygame.image.load('images/game_over.png')
     image2 = pygame.transform.scale(image1, (560, 364))
-    image3 = pygame.image.load('images/game_over.png')
+    image3 = pygame.transform.scale(image1, (600, 390))
+    run = 1
+    ok = 0
+    while run:
+        screen.fill((0, 0, 50))
+        pygame.display.update()
+        screen.blit(image1, (340, 231))
+        pygame.display.update()
+        time.sleep(0.3)
+        screen.fill((0, 0, 50))
+        screen.blit(image2, (320, 218))
+        pygame.display.update()
+        time.sleep(0.3)
+        screen.fill((0, 0, 50))
+        screen.blit(image3, (300, 205))
+        pygame.display.update()
+        time.sleep(0.3)
+        ok += 1
+        if ok == 6:
+            run = 0
+
+
+# display you_win window
+def win_menu():
+    time.sleep(0.2)
+    win_sound = mixer.Sound('sound/win_game.wav')
+    win_sound.play()
+    image1 = pygame.image.load('images/win.png')
+    image1 = pygame.transform.scale(image1, (520, 338))
+    image2 = pygame.transform.scale(image1, (560, 364))
     image3 = pygame.transform.scale(image1, (600, 390))
     run = 1
     ok = 0
@@ -405,5 +437,3 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_s:
                 game()
-
-
