@@ -319,9 +319,41 @@ def show_ship(see_ship1, see_ship2, see_ship3, ship_remain, ship_remain_bot):
         score = font.render("COMPUTER WINS", True, (255, 255, 255))
         screen.blit(score, (matrix_x + 400, matrix_y + 600))
         pygame.display.update()
+        mixer.music.stop()
+        game_over_menu()
         time.sleep(3)
         # exit()
         running = 0
+
+# display game_over window
+def game_over_menu():
+    game_over_sound = mixer.Sound('sound/lost_game.wav')
+    game_over_sound.play()
+    image1 = pygame.image.load('images/game_over.png')
+    image1 = pygame.transform.scale(image1, (520, 338))
+    image2 = pygame.image.load('images/game_over.png')
+    image2 = pygame.transform.scale(image1, (560, 364))
+    image3 = pygame.image.load('images/game_over.png')
+    image3 = pygame.transform.scale(image1, (600, 390))
+    run = 1
+    ok = 0
+    while run:
+        screen.fill((0, 0, 50))
+        pygame.display.update()
+        screen.blit(image1, (340, 231))
+        pygame.display.update()
+        time.sleep(0.3)
+        screen.fill((0, 0, 50))
+        screen.blit(image2, (320, 218))
+        pygame.display.update()
+        time.sleep(0.3)
+        screen.fill((0, 0, 50))
+        screen.blit(image3, (300, 205))
+        pygame.display.update()
+        time.sleep(0.3)
+        ok += 1
+        if ok == 6:
+            run = 0
 
 
 # start menu
@@ -331,9 +363,9 @@ def start_menu():
     screen.fill((0, 0, 50))
     screen.blit(start, start.get_rect(center=screen.get_rect().center))
     vector_image = load_images('images')
-    image1 = pygame.transform.scale(vector_image[2], (90, 90))
-    image2 = pygame.transform.scale(vector_image[2], (100, 100))
-    image3 = pygame.transform.scale(vector_image[2], (110, 110))
+    image1 = pygame.transform.scale(vector_image[3], (90, 90))
+    image2 = pygame.transform.scale(vector_image[3], (100, 100))
+    image3 = pygame.transform.scale(vector_image[3], (110, 110))
 
     test = pygame.image.load('images/cancel.png')
     # create GIF animation for keycap S
@@ -359,6 +391,11 @@ def load_images(path):
 
 # main function
 while running:
+    # default customization start menu
+    start_menu()
+    # refresh display
+    pygame.display.update()
+
     # catch an event
     for event in pygame.event.get():
         # quit
@@ -369,7 +406,4 @@ while running:
             if event.key == pygame.K_s:
                 game()
 
-    # default customization start menu
-    start_menu()
-    # refresh display
-    pygame.display.update()
+
