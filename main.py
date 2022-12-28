@@ -440,9 +440,9 @@ def start_menu():
     screen.blit(start, (350, 570))
     screen.blit(title, (230, 320))
     vector_image = load_images('images')
-    image1 = pygame.transform.scale(vector_image[3], (90, 90))
-    image2 = pygame.transform.scale(vector_image[3], (100, 100))
-    image3 = pygame.transform.scale(vector_image[3], (110, 110))
+    image1 = pygame.transform.scale(vector_image[4], (90, 90))
+    image2 = pygame.transform.scale(vector_image[4], (100, 100))
+    image3 = pygame.transform.scale(vector_image[4], (110, 110))
 
     test = pygame.image.load('images/cancel.png')
     # create GIF animation for keycap S
