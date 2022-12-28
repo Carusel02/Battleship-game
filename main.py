@@ -60,8 +60,10 @@ def game():
     # hit one part of boat
     hit_value_x = matrix_x + 15
     hit_value_y = matrix_y + 10
-    hit_here = pygame.image.load('images/hitboat.png')
+    hit_here = pygame.image.load('images/square.png')
     hit_here = pygame.transform.scale(hit_here, (40, 40))
+    hit_here_bot = pygame.image.load('images/square_bot.png')
+    hit_here_bot = pygame.transform.scale(hit_here_bot, (40, 40))
     # score
     global font
     score = font.render("Hit : NO", True, (255, 255, 255))
@@ -73,7 +75,7 @@ def game():
     # ships
     global ship1
 
-    ship1 = pygame.transform.scale(ship1, (160, 40))
+    ship1 = pygame.transform.scale(ship1, (180, 40))
     ship1_i = random.randint(0, 6)
     ship1_j = random.randint(0, 9)
     global ship1_x
@@ -294,13 +296,6 @@ def game():
         screen.blit(heading_left, (180, 50))
         screen.blit(heading_right, (780, 50))
 
-        if ship2cp_x != 0:
-            screen.blit(ship2, (ship2cp_x, ship2cp_y))
-        if ship3cp_x != 0:
-            screen.blit(ship3, (ship3cp_x, ship3cp_y))
-        if ship1cp_x != 0:
-            screen.blit(ship1, (ship1cp_x, ship1cp_y))
-
         i = 0
         for x in matrix:
             j = 0
@@ -320,9 +315,16 @@ def game():
                 if y == -1:
                     screen.blit(not_here, (initial_value_x + 548.6 + cell_size * j, initial_value_y + cell_size * i))
                 if y == -2:
-                    screen.blit(hit_here, (hit_value_x + 548.6 + cell_size * j, hit_value_y + cell_size * i))
+                    screen.blit(hit_here_bot, (hit_value_x + 548.6 + cell_size * j, hit_value_y + cell_size * i))
                 j += 1
             i += 1
+
+        if ship2cp_x != 0:
+            screen.blit(ship2, (ship2cp_x, ship2cp_y))
+        if ship3cp_x != 0:
+            screen.blit(ship3, (ship3cp_x, ship3cp_y))
+        if ship1cp_x != 0:
+            screen.blit(ship1, (ship1cp_x, ship1cp_y - 5))
 
         screen.blit(pos, (pos_x, pos_y))
         # verify
@@ -361,7 +363,7 @@ def show_ship(see_ship1, see_ship2, see_ship3, ship_remain, ship_remain_bot):
 
     # check to display boat
     if see_ship1 == 1:
-        screen.blit(ship1, (ship1_x, ship1_y))
+        screen.blit(ship1, (ship1_x, ship1_y - 5))
     if see_ship2 == 1:
         screen.blit(ship2, (ship2_x, ship2_y))
     if see_ship3 == 1:
@@ -432,26 +434,38 @@ def end_menu(image, sound):
 # start menu
 def start_menu():
     font = pygame.font.Font('font/pixelated.ttf', 40)
+    font_name = pygame.font.Font('font/pixelated.ttf', 20)
     start = font.render("PRESS                FOR START", True, (255, 255, 255))
     font2 = pygame.font.Font('font/pixelated.ttf', 70)
-    title = font2.render("WORLD DOMINATION", True, (255, 255, 255))
+    title = font2.render("WORLD DOMINATION", True, (74, 198, 183))
     screen.fill((0, 0, 50))
-    screen.blit(start, (350, 570))
-    screen.blit(title, (230, 320))
+    screen.blit(start, (330, 570))
+    screen.blit(title, (220, 320))
     vector_image = load_images('images')
-    image1 = pygame.transform.scale(vector_image[4], (90, 90))
-    image2 = pygame.transform.scale(vector_image[4], (100, 100))
-    image3 = pygame.transform.scale(vector_image[4], (110, 110))
+    battle_ship = pygame.transform.scale(vector_image[0], (700, 500))
+    screen.blit(battle_ship, (240, -50))
+    image1 = pygame.transform.scale(vector_image[5], (90, 90))
+    image2 = pygame.transform.scale(vector_image[5], (100, 100))
+    image3 = pygame.transform.scale(vector_image[5], (110, 110))
+
+    diana = font_name.render("DIANA MARIA STEFAN", True, (255, 255, 255))
+    mary = font_name.render("MARIA CRISTINA COSTEA", True, (255, 255, 255))
+    marius = font_name.render("MARIUS DANIEL MARIN", True, (255, 255, 255))
+    stefan = font_name.render("STEFAN VALENTIN IONESCU", True, (255, 255, 255))
+    screen.blit(diana, (10, 5))
+    screen.blit(marius, (10, 760))
+    screen.blit(mary, (900, 5))
+    screen.blit(stefan, (865, 760))
 
     test = pygame.image.load('images/cancel.png')
     # create GIF animation for keycap S
-    screen.blit(image1, (530, 560))
+    screen.blit(image1, (510, 560))
     pygame.display.update()
     time.sleep(0.3)
-    screen.blit(image2, (525, 555))
+    screen.blit(image2, (505, 555))
     pygame.display.update()
     time.sleep(0.3)
-    screen.blit(image3, (520, 550))
+    screen.blit(image3, (500, 550))
     pygame.display.update()
     time.sleep(0.3)
 
