@@ -16,29 +16,6 @@ pygame.display.set_icon(icon)
 # run program
 running = 1
 
-# global ships
-global ship1
-global ship2
-global ship3
-global show_ship1
-global show_ship2
-global show_ship3
-
-# global X coord
-global ship1_x
-global ship2_x
-global ship3_x
-# global Y coord
-global ship1_y
-global ship2_y
-global ship3_y
-
-# global stuff
-global matrix_x
-global matrix_y
-global font
-
-
 # function game
 def game():
     # add background music
@@ -346,7 +323,8 @@ def game():
         screen.blit(pos, (pos_x, pos_y))
         # verify
         show_ship(show_ship1, show_ship2, show_ship3, ship_left, ship_left_cp)
-
+        # refresh display
+        pygame.display.update()
 
 # bot function for hitting
 def bot(matrix):
