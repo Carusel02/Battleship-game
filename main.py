@@ -328,7 +328,7 @@ def game():
         if ship2cp_x != 0:
             screen.blit(ship2, (ship2cp_x - 7, ship2cp_y - 12))
         if ship3cp_x != 0:
-            screen.blit(ship3, (ship3cp_x, ship3cp_y))
+            screen.blit(ship3, (ship3cp_x + 5, ship3cp_y))
         if ship1cp_x != 0:
             screen.blit(ship1, (ship1cp_x, ship1cp_y - 5))
 
@@ -373,7 +373,7 @@ def show_ship(see_ship1, see_ship2, see_ship3, ship_remain, ship_remain_bot):
     if see_ship2 == 1:
         screen.blit(ship2, (ship2_x - 7, ship2_y - 12))
     if see_ship3 == 1:
-        screen.blit(ship3, (ship3_x, ship3_y))
+        screen.blit(ship3, (ship3_x + 5, ship3_y))
 
     # check for ending game
     if ship_remain == 0 or ship_remain_bot == 0:
