@@ -6,9 +6,9 @@ import time
 # background sound
 from pygame import mixer
 # terminal colors
-from colorama import Fore
+#from colorama import Fore
 
-print(Fore.RED + 'python game')
+#print(Fore.RED + 'python game')
 # init
 pygame.init()
 # screen
@@ -392,8 +392,11 @@ def win_menu():
 def start_menu():
     font = pygame.font.Font('font/pixelated.ttf', 40)
     start = font.render("PRESS                FOR START", True, (255, 255, 255))
+    font2 = pygame.font.Font('font/pixelated.ttf', 70)
+    title = font2.render("WORLD DOMINATION", True, (255, 255, 255))
     screen.fill((0, 0, 50))
-    screen.blit(start, start.get_rect(center=screen.get_rect().center))
+    screen.blit(start, (350, 570))
+    screen.blit(title, (230, 320))
     vector_image = load_images('images')
     image1 = pygame.transform.scale(vector_image[3], (90, 90))
     image2 = pygame.transform.scale(vector_image[3], (100, 100))
@@ -401,13 +404,13 @@ def start_menu():
 
     test = pygame.image.load('images/cancel.png')
     # create GIF animation for keycap S
-    screen.blit(image1, (500, 360))
+    screen.blit(image1, (530, 560))
     pygame.display.update()
     time.sleep(0.3)
-    screen.blit(image2, (495, 355))
+    screen.blit(image2, (525, 555))
     pygame.display.update()
     time.sleep(0.3)
-    screen.blit(image3, (490, 350))
+    screen.blit(image3, (520, 550))
     pygame.display.update()
     time.sleep(0.3)
 
