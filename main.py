@@ -70,6 +70,11 @@ def game():
     initial_value_y = matrix_y + 10
     not_here = pygame.image.load('images/nothing_here (2).png')
     not_here = pygame.transform.scale(not_here, (40, 40))
+    # hit one part of boat
+    hit_value_x = matrix_x + 15
+    hit_value_y = matrix_y + 10
+    hit_here = pygame.image.load('images/hitboat.png')
+    hit_here = pygame.transform.scale(hit_here, (40, 40))
     # score
     global font
     font = pygame.font.Font('font/pixelated.ttf', 30)
@@ -222,24 +227,18 @@ def game():
 
                     if matrix[cursor_j][cursor_i] == 1:
                         score = font.render("Hit : YES 1", True, (255, 255, 255))
-                        show_ship1 = 1
-                        #ship_left -= 1
                         contor1 -= 1
-                        matrix[cursor_j][cursor_i] = -1
+                        matrix[cursor_j][cursor_i] = -2
 
                     if matrix[cursor_j][cursor_i] == 2:
                         score = font.render("Hit : YES 2", True, (255, 255, 255))
-                        show_ship2 = 1
-                        #ship_left -= 1
                         contor2 -= 1
-                        matrix[cursor_j][cursor_i] = -1
+                        matrix[cursor_j][cursor_i] = -2
 
                     if matrix[cursor_j][cursor_i] == 3:
                         score = font.render("Hit : YES 3", True, (255, 255, 255))
-                        show_ship3 = 1
-                        #ship_left -= 1
                         contor3 -= 1
-                        matrix[cursor_j][cursor_i] = -1
+                        matrix[cursor_j][cursor_i] = -2
 
                     if matrix[cursor_j][cursor_i] == -1:
                         score = font.render("Hit : NO", True, (255, 255, 255))
@@ -328,6 +327,8 @@ def game():
             for y in x:
                 if y == -1:
                     screen.blit(not_here, (initial_value_x + cell_size * j, initial_value_y + cell_size * i))
+                if y == -2:
+                    screen.blit(hit_here, (hit_value_x + cell_size * j, hit_value_y + cell_size * i))
                 j += 1
             i += 1
 
