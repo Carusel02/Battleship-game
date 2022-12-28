@@ -98,7 +98,7 @@ def game():
 
     global ship2
 
-    ship2 = pygame.transform.scale(ship2, (120, 80))
+    ship2 = pygame.transform.scale(ship2, (150, 110))
     ship2_i = random.randint(0, 7)
     ship2_j = random.randint(0, 8)
     global ship2_x
@@ -204,29 +204,35 @@ def game():
                     flag = 1
                     # sound effect
                     press_hit_sound = mixer.Sound('sound/cross_sound.wav')
-                    press_hit_sound.play()
                     press_hit_sound.set_volume(0.1)
+                    hit_sound = mixer.Sound('sound/hit_yes.mp3')
+                    hit_sound.set_volume(0.3)
+
                     if matrix[cursor_j][cursor_i] == 0:
                         score = font.render("Hit : NO", True, (255, 255, 255))
                         matrix[cursor_j][cursor_i] = -1
-
+                        press_hit_sound.play()
                     if matrix[cursor_j][cursor_i] == 1:
                         score = font.render("Hit : YES", True, (255, 255, 255))
                         ship1_parts -= 1
                         matrix[cursor_j][cursor_i] = -2
+                        hit_sound.play()
 
                     if matrix[cursor_j][cursor_i] == 2:
                         score = font.render("Hit : YES", True, (255, 255, 255))
                         ship2_parts -= 1
                         matrix[cursor_j][cursor_i] = -2
+                        hit_sound.play()
 
                     if matrix[cursor_j][cursor_i] == 3:
                         score = font.render("Hit : YES", True, (255, 255, 255))
                         ship3_parts -= 1
                         matrix[cursor_j][cursor_i] = -2
+                        hit_sound.play()
 
                     if matrix[cursor_j][cursor_i] == -1:
                         score = font.render("Hit : NO", True, (255, 255, 255))
+                        press_hit_sound.play()
 
                     if ship1_parts == 0:
                         show_ship1 = 1
@@ -284,7 +290,7 @@ def game():
         screen.fill((0, 0, 50))
         screen.blit(matrix_image, (matrix_x, matrix_y))
         screen.blit(matrix_image, (matrix_x + 548.6, matrix_y))
-        screen.blit(score, (1000, 675))
+        screen.blit(score, (975, 675))
 
         score_user = font.render("Score user: " + str(3 - ship_left), True, (255, 255, 255))
         score_bot = font.render("Score opponent: " + str(3 - ship_left_cp), True, (255, 255, 255))
@@ -320,7 +326,7 @@ def game():
             i += 1
 
         if ship2cp_x != 0:
-            screen.blit(ship2, (ship2cp_x, ship2cp_y))
+            screen.blit(ship2, (ship2cp_x - 7, ship2cp_y - 12))
         if ship3cp_x != 0:
             screen.blit(ship3, (ship3cp_x, ship3cp_y))
         if ship1cp_x != 0:
@@ -365,7 +371,7 @@ def show_ship(see_ship1, see_ship2, see_ship3, ship_remain, ship_remain_bot):
     if see_ship1 == 1:
         screen.blit(ship1, (ship1_x, ship1_y - 5))
     if see_ship2 == 1:
-        screen.blit(ship2, (ship2_x, ship2_y))
+        screen.blit(ship2, (ship2_x - 7, ship2_y - 12))
     if see_ship3 == 1:
         screen.blit(ship3, (ship3_x, ship3_y))
 
@@ -480,8 +486,8 @@ def load_images(path):
 
 
 # first music
-mixer.music.load('sound/start_menu.wav')
-mixer.music.play()
+mixer.music.load('sound/menu_sound.mp3')
+mixer.music.play(-1)
 mixer.music.set_volume(0.01)
 
 # main function
