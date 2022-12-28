@@ -421,6 +421,9 @@ def load_images(path):
     return images
 
 
+# first music
+start_menu_sound = mixer.Sound('sound/start_menu.wav')
+start_menu_sound.play()
 # main function
 while running:
     # default customization start menu
@@ -436,4 +439,6 @@ while running:
         # press start => function game
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_s:
+                start_menu_sound.stop()
+                time.sleep(0.3)
                 game()
