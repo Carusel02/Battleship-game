@@ -226,17 +226,17 @@ def game():
                         matrix[cursor_j][cursor_i] = -1
 
                     if matrix[cursor_j][cursor_i] == 1:
-                        score = font.render("Hit : YES 1", True, (255, 255, 255))
+                        score = font.render("Hit : YES", True, (255, 255, 255))
                         contor1 -= 1
                         matrix[cursor_j][cursor_i] = -2
 
                     if matrix[cursor_j][cursor_i] == 2:
-                        score = font.render("Hit : YES 2", True, (255, 255, 255))
+                        score = font.render("Hit : YES", True, (255, 255, 255))
                         contor2 -= 1
                         matrix[cursor_j][cursor_i] = -2
 
                     if matrix[cursor_j][cursor_i] == 3:
-                        score = font.render("Hit : YES 3", True, (255, 255, 255))
+                        score = font.render("Hit : YES", True, (255, 255, 255))
                         contor3 -= 1
                         matrix[cursor_j][cursor_i] = -2
 
@@ -261,19 +261,10 @@ def game():
         if flag == 1:
             temp = bot(matrixcp)
             if temp == 1:
-                #ship_left_cp -= 1
-                #ship1cp_x = 0
-                #print(1)
                 contor1cp -= 1
             if temp == 2:
-                #ship_left_cp -= 1
-                #ship2cp_x = 0
-                #print(2)
                 contor2cp -= 1
             if temp == 3:
-                #ship_left_cp -= 1
-                #ship3cp_x = 0
-                #print(3)
                 contor3cp -= 1
             if contor1cp == 0:
                 ship_left_cp -= 1
@@ -338,6 +329,8 @@ def game():
             for y in x:
                 if y == -1:
                     screen.blit(not_here, (initial_value_x + 548.6 + cell_size * j, initial_value_y + cell_size * i))
+                if y == -2:
+                    screen.blit(hit_here, (hit_value_x + 548.6 + cell_size * j, hit_value_y + cell_size * i))
                 j += 1
             i += 1
 
@@ -360,15 +353,15 @@ def bot(matrix):
             return 0
 
         if matrix[i][j] == 1:
-            matrix[i][j] = -1
+            matrix[i][j] = -2
             return 1
 
         if matrix[i][j] == 2:
-            matrix[i][j] = -1
+            matrix[i][j] = -2
             return 2
 
         if matrix[i][j] == 3:
-            matrix[i][j] = -1
+            matrix[i][j] = -2
             return 3
 
 
