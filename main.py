@@ -27,7 +27,10 @@ pos_y = matrix_y + 10
 ship1 = pygame.image.load('images/ship1.png')
 ship2 = pygame.image.load('images/ship2.png')
 ship3 = pygame.image.load('images/ship3.png')
-
+# show ships
+show_ship1 = 0
+show_ship2 = 0
+show_ship3 = 0
 
 # function game
 def game():
@@ -163,21 +166,17 @@ def game():
     matrixcp[ship3cp_j][ship3cp_i + 2] = 3
 
     global show_ship1
-    show_ship1 = 0
     global show_ship2
-    show_ship2 = 0
     global show_ship3
-    show_ship3 = 0
-
     cursor_i = 0
     cursor_j = 0
 
-    contor1 = 4
-    contor1cp = 4
-    contor2 = 6
-    contor2cp = 6
-    contor3 = 3
-    contor3cp = 3
+    ship1_parts = 4
+    ship1_parts_bot = 4
+    ship2_parts = 6
+    ship2_parts_bot = 6
+    ship3_parts = 3
+    ship3_parts_bot = 3
 
     global running
 
@@ -211,58 +210,58 @@ def game():
 
                     if matrix[cursor_j][cursor_i] == 1:
                         score = font.render("Hit : YES", True, (255, 255, 255))
-                        contor1 -= 1
+                        ship1_parts -= 1
                         matrix[cursor_j][cursor_i] = -2
 
                     if matrix[cursor_j][cursor_i] == 2:
                         score = font.render("Hit : YES", True, (255, 255, 255))
-                        contor2 -= 1
+                        ship2_parts -= 1
                         matrix[cursor_j][cursor_i] = -2
 
                     if matrix[cursor_j][cursor_i] == 3:
                         score = font.render("Hit : YES", True, (255, 255, 255))
-                        contor3 -= 1
+                        ship3_parts -= 1
                         matrix[cursor_j][cursor_i] = -2
 
                     if matrix[cursor_j][cursor_i] == -1:
                         score = font.render("Hit : NO", True, (255, 255, 255))
 
-                    if contor1 == 0:
+                    if ship1_parts == 0:
                         show_ship1 = 1
                         ship_left -= 1
-                        contor1 = -1
+                        ship1_parts = -1
 
-                    if contor2 == 0:
+                    if ship2_parts == 0:
                         show_ship2 = 1
                         ship_left -= 1
-                        contor2 = -1
+                        ship2_parts = -1
 
-                    if contor3 == 0:
+                    if ship3_parts == 0:
                         show_ship3 = 1
                         ship_left -= 1
-                        contor3 = -1
+                        ship3_parts = -1
 
         # make a bot move
         if flag == 1:
             temp = bot(matrixcp)
             if temp == 1:
-                contor1cp -= 1
+                ship1_parts_bot -= 1
             if temp == 2:
-                contor2cp -= 1
+                ship2_parts_bot -= 1
             if temp == 3:
-                contor3cp -= 1
-            if contor1cp == 0:
+                ship3_parts_bot -= 1
+            if ship1_parts_bot == 0:
                 ship_left_cp -= 1
                 ship1cp_x = 0
-                contor1cp = -1
-            if contor2cp == 0:
+                ship1_parts_bot = -1
+            if ship2_parts_bot == 0:
                 ship_left_cp -= 1
                 ship2cp_x = 0
-                contor2cp = -1
-            if contor3cp == 0:
+                ship2_parts_bot = -1
+            if ship3_parts_bot == 0:
                 ship_left_cp -= 1
                 ship3cp_x = 0
-                contor3cp = -1
+                ship3_parts_bot = -1
             flag = 0
 
         # keep cursor in matrix
