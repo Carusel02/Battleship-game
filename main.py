@@ -130,7 +130,7 @@ def game():
     ship3cp_i = random.randint(0, 9)
     ship3cp_j = random.randint(0, 9)
     ship3cp_x = initial_value_x + 548.6 + ship3cp_i * cell_size
-    ship3cp_y = initial_value_y + 10 + ship3cp_j * cell_size
+    ship3cp_y = initial_value_y + ship3cp_j * cell_size
     matrixcp[ship3cp_j][ship3cp_i] = 3
 
     for x in matrixcp:
