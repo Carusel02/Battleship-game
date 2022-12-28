@@ -33,7 +33,7 @@ ship3 = pygame.image.load('images/ship3.png')
 def game():
     # add background music
     mixer.music.load('sound/background_mitopia_ost.wav')
-    mixer.music.set_volume(0.3)
+    mixer.music.set_volume(0.01)
     mixer.music.play(-1)
     # global variables
     global matrix_x
@@ -61,10 +61,7 @@ def game():
     hit_here = pygame.transform.scale(hit_here, (40, 40))
     # score
     global font
-
     score = font.render("Hit : NO", True, (255, 255, 255))
-    score_display = font.render("Scor user: " + str(3 - ship_left) + "Scor bot: " + str(3 - ship_left_cp), True,
-                                (255, 255, 255))
     # matrix
     matrix = [[0 for j in range(10)] for i in range(10)]
     matrixcp = [[0 for j in range(10)] for i in range(10)]
@@ -101,14 +98,12 @@ def game():
     ship2_j = random.randint(0, 8)
     global ship2_x
     global ship2_y
-    if matrix[ship2_j][ship2_i] or matrix[ship2_j][ship2_i + 1]or matrix[ship2_j][ship2_i + 2] or \
-            matrix[ship2_j + 1][ship2_i] or matrix[ship2_j + 1][ship2_i + 1] or matrix[ship2_j + 1][
-        ship2_i + 2] != 0:
-        while matrix[ship2_j][ship2_i] or matrix[ship2_j][ship2_i + 1] or matrix[ship2_j][ship2_i + 2] or \
-                matrix[ship2_j + 1][ship2_i] or matrix[ship2_j + 1][ship2_i + 1] or matrix[ship2_j + 1][
-            ship2_i + 2] != 0:
-            ship2_i = random.randint(0, 7)
-            ship2_j = random.randint(0, 8)
+
+    while matrix[ship2_j][ship2_i] or matrix[ship2_j][ship2_i + 1] or matrix[ship2_j][ship2_i + 2] or \
+                matrix[ship2_j + 1][ship2_i] or matrix[ship2_j + 1][ship2_i + 1] or matrix[ship2_j + 1][ship2_i + 2]:
+        ship2_i = random.randint(0, 7)
+        ship2_j = random.randint(0, 8)
+
     matrix[ship2_j][ship2_i] = 2
     matrix[ship2_j][ship2_i + 1] = 2
     matrix[ship2_j][ship2_i + 2] = 2
@@ -120,14 +115,13 @@ def game():
 
     ship2cp_i = random.randint(0, 7)
     ship2cp_j = random.randint(0, 8)
-    if matrixcp[ship2cp_j][ship2cp_i] != 0 or matrixcp[ship2cp_j][ship2cp_i + 1] != 0 or matrixcp[ship2cp_j][
-        ship2cp_i + 2] != 0 or matrixcp[ship2cp_j + 1][ship2cp_i] != 0 or matrixcp[ship2cp_j + 1][ship2cp_i + 1] != 0 or \
-            matrixcp[ship2cp_j + 1][ship2cp_i + 2] != 0:
-        while matrixcp[ship2cp_j][ship2cp_i] != 0 or matrixcp[ship2cp_j][ship2cp_i + 1] != 0 or matrixcp[ship2cp_j][
-            ship2cp_i + 2] != 0 or matrixcp[ship2cp_j + 1][ship2cp_i] != 0 or matrixcp[ship2cp_j + 1][
-            ship2cp_i + 1] != 0 or matrixcp[ship2cp_j + 1][ship2cp_i + 2] != 0:
-            ship2cp_i = random.randint(0, 7)
-            ship2cp_j = random.randint(0, 8)
+
+    while matrixcp[ship2cp_j][ship2cp_i] or matrixcp[ship2cp_j][ship2cp_i + 1] or matrixcp[ship2cp_j][ship2cp_i + 2] or \
+            matrixcp[ship2cp_j + 1][ship2cp_i] or matrixcp[ship2cp_j + 1][ship2cp_i + 1] or \
+            matrixcp[ship2cp_j + 1][ship2cp_i + 2]:
+        ship2cp_i = random.randint(0, 7)
+        ship2cp_j = random.randint(0, 8)
+
     ship2cp_x = matrix_x + 548.6 + 15 + ship2cp_i * cell_size
     ship2cp_y = matrix_y + 10 + ship2cp_j * cell_size
     matrixcp[ship2cp_j][ship2cp_i] = 2
@@ -144,10 +138,11 @@ def game():
     ship3_j = random.randint(0, 9)
     global ship3_x
     global ship3_y
-    if matrix[ship3_j][ship3_i] != 0 or matrix[ship3_j][ship3_i + 1] != 0 or matrix[ship3_j][ship3_i + 2] != 0:
-        while matrix[ship3_j][ship3_i] != 0 or matrix[ship3_j][ship3_i + 1] != 0 or matrix[ship3_j][ship3_i + 2] != 0:
-            ship3_i = random.randint(0, 7)
-            ship3_j = random.randint(0, 9)
+
+    while matrix[ship3_j][ship3_i] or matrix[ship3_j][ship3_i + 1] or matrix[ship3_j][ship3_i + 2]:
+        ship3_i = random.randint(0, 7)
+        ship3_j = random.randint(0, 9)
+
     ship3_x = initial_value_x + ship3_i * cell_size
     ship3_y = initial_value_y + ship3_j * cell_size
     matrix[ship3_j][ship3_i] = 3
@@ -156,21 +151,16 @@ def game():
 
     ship3cp_i = random.randint(0, 7)
     ship3cp_j = random.randint(0, 9)
-    if matrixcp[ship3cp_j][ship3cp_i] != 0 or matrixcp[ship3cp_j][ship3cp_i + 1] != 0 or matrixcp[ship3cp_j][
-        ship3cp_i + 2] != 0:
-        while matrixcp[ship3cp_j][ship3cp_i] != 0 or matrixcp[ship3cp_j][ship3cp_i + 1] != 0 or matrixcp[ship3cp_j][
-            ship3cp_i + 2] != 0:
-            ship3cp_i = random.randint(0, 7)
-            ship3cp_j = random.randint(0, 9)
+
+    while matrixcp[ship3cp_j][ship3cp_i] or matrixcp[ship3cp_j][ship3cp_i + 1] or matrixcp[ship3cp_j][ship3cp_i + 2]:
+        ship3cp_i = random.randint(0, 7)
+        ship3cp_j = random.randint(0, 9)
 
     ship3cp_x = initial_value_x + 548.6 + ship3cp_i * cell_size
     ship3cp_y = initial_value_y + ship3cp_j * cell_size
     matrixcp[ship3cp_j][ship3cp_i] = 3
     matrixcp[ship3cp_j][ship3cp_i + 1] = 3
     matrixcp[ship3cp_j][ship3cp_i + 2] = 3
-
-    for x in matrixcp:
-        print(x)
 
     global show_ship1
     show_ship1 = 0
@@ -214,6 +204,7 @@ def game():
                     # sound effect
                     press_hit_sound = mixer.Sound('sound/cross_sound.wav')
                     press_hit_sound.play()
+                    press_hit_sound.set_volume(0.1)
                     if matrix[cursor_j][cursor_i] == 0:
                         score = font.render("Hit : NO", True, (255, 255, 255))
                         matrix[cursor_j][cursor_i] = -1
@@ -264,17 +255,14 @@ def game():
                 ship_left_cp -= 1
                 ship1cp_x = 0
                 contor1cp = -1
-                print(1)
             if contor2cp == 0:
                 ship_left_cp -= 1
                 ship2cp_x = 0
-                print(2)
                 contor2cp = -1
             if contor3cp == 0:
                 ship_left_cp -= 1
                 ship3cp_x = 0
                 contor3cp = -1
-                print(3)
             flag = 0
 
         # keep cursor in matrix
@@ -295,11 +283,17 @@ def game():
         screen.fill((0, 0, 50))
         screen.blit(matrix_image, (matrix_x, matrix_y))
         screen.blit(matrix_image, (matrix_x + 548.6, matrix_y))
-        screen.blit(score, (matrix_x + 800, matrix_y + 600))
+        screen.blit(score, (1000, 675))
 
-        score_display = font.render("Scor user: " + str(3 - ship_left) + "    Scor bot: " + str(3 - ship_left_cp), True,
-                                    (255, 255, 255))
-        screen.blit(score_display, (0, 700))
+        score_user = font.render("Score user: " + str(3 - ship_left), True, (255, 255, 255))
+        score_bot = font.render("Score opponent: " + str(3 - ship_left_cp), True, (255, 255, 255))
+        screen.blit(score_user, (70, 650))
+        screen.blit(score_bot, (70, 700))
+
+        heading_left = font.render("Opponent's map", True, (255, 255, 255))
+        heading_right = font.render("Your map", True, (255, 255, 255))
+        screen.blit(heading_left, (180, 50))
+        screen.blit(heading_right, (780, 50))
 
         if ship2cp_x != 0:
             screen.blit(ship2, (ship2cp_x, ship2cp_y))
@@ -378,11 +372,11 @@ def show_ship(see_ship1, see_ship2, see_ship3, ship_remain, ship_remain_bot):
     if ship_remain == 0 or ship_remain_bot == 0:
         # game result
         if ship_remain == 0:
-            winner = font.render("YOU WIN", True, (255, 255, 255))
+            winner = font.render("YOU WIN!!!", True, (121, 188, 184))
         else:
-            winner = font.render("COMPUTER WINS", True, (255, 255, 255))
+            winner = font.render("COMPUTER WINS!!!", True, (121, 188, 184))
         # display winner
-        screen.blit(winner, (matrix_x + 400, matrix_y + 600))
+        screen.blit(winner, (550, 675))
         pygame.display.update()
         time.sleep(3)
         mixer.music.stop()
@@ -410,6 +404,7 @@ image_win = pygame.image.load('images/win.png')
 def end_menu(image, sound):
     time.sleep(0.2)
     sound.play()
+    sound.set_volume(0.01)
     image1 = pygame.transform.scale(image, (520, 338))
     image2 = pygame.transform.scale(image, (560, 364))
     image3 = pygame.transform.scale(image, (600, 390))
@@ -472,9 +467,9 @@ def load_images(path):
 
 
 # first music
-start_menu_sound = mixer.Sound('sound/start_menu.wav')
-mixer.music.set_volume(0.2)
-start_menu_sound.play()
+mixer.music.load('sound/start_menu.wav')
+mixer.music.play()
+mixer.music.set_volume(0.01)
 
 # main function
 while running:
@@ -489,5 +484,5 @@ while running:
         # press start => function game
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_s:
-                start_menu_sound.stop()
+                mixer.music.stop()
                 game()
