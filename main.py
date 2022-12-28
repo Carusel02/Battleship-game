@@ -84,54 +84,92 @@ def game():
     # ships
     global ship1
     ship1 = pygame.image.load('images/ship1.png')
-    ship1 = pygame.transform.scale(ship1, (40, 40))
-    ship1_i = random.randint(0, 9)
+    ship1 = pygame.transform.scale(ship1, (160, 40))
+    ship1_i = random.randint(0, 6)
     ship1_j = random.randint(0, 9)
     global ship1_x
     global ship1_y
     ship1_x = initial_value_x + ship1_i * cell_size
     ship1_y = initial_value_y + ship1_j * cell_size
     matrix[ship1_j][ship1_i] = 1
+    matrix[ship1_j][ship1_i + 3] = 1
+    matrix[ship1_j][ship1_i + 1] = 1
+    matrix[ship1_j][ship1_i + 2] = 1
 
-    ship1cp_i = random.randint(0, 9)
+    ship1cp_i = random.randint(0, 6)
     ship1cp_j = random.randint(0, 9)
     ship1cp_x = initial_value_x + 548.6 + ship1cp_i * cell_size
     ship1cp_y = initial_value_y + ship1cp_j * cell_size
     matrixcp[ship1cp_j][ship1cp_i] = 1
+    matrixcp[ship1cp_j][ship1cp_i + 1] = 1
+    matrixcp[ship1cp_j][ship1cp_i + 2] = 1
+    matrixcp[ship1cp_j][ship1cp_i + 3] = 1
 
     global ship2
     ship2 = pygame.image.load('images/ship2.png')
-    ship2 = pygame.transform.scale(ship2, (40, 40))
-    ship2_i = random.randint(0, 9)
-    ship2_j = random.randint(0, 9)
+    ship2 = pygame.transform.scale(ship2, (120, 80))
+    ship2_i = random.randint(0, 7)
+    ship2_j = random.randint(0, 8)
     global ship2_x
     global ship2_y
+    if matrix[ship2_j][ship2_i] != 0 or matrix[ship2_j][ship2_i + 1] !=0 or matrix[ship2_j][ship2_i + 2] != 0 or matrix[ship2_j + 1][ship2_i] != 0 or matrix[ship2_j + 1][ship2_i + 1] != 0 or matrix[ship2_j + 1][ship2_i + 2] != 0:
+        while matrix[ship2_j][ship2_i] != 0 or matrix[ship2_j][ship2_i + 1] !=0 or matrix[ship2_j][ship2_i + 2] != 0 or matrix[ship2_j + 1][ship2_i] != 0 or matrix[ship2_j + 1][ship2_i + 1] != 0 or matrix[ship2_j + 1][ship2_i + 2] != 0:
+            ship2_i = random.randint(0, 7)
+            ship2_j = random.randint(0, 8)
+    matrix[ship2_j][ship2_i] = 2
+    matrix[ship2_j][ship2_i + 1] = 2
+    matrix[ship2_j][ship2_i + 2] = 2
+    matrix[ship2_j + 1][ship2_i] = 2
+    matrix[ship2_j + 1][ship2_i + 1] = 2
+    matrix[ship2_j + 1][ship2_i + 2] = 2
     ship2_x = initial_value_x + ship2_i * cell_size
     ship2_y = initial_value_y + ship2_j * cell_size
-    matrix[ship2_j][ship2_i] = 2
 
-    ship2cp_i = random.randint(0, 9)
-    ship2cp_j = random.randint(0, 9)
+
+    ship2cp_i = random.randint(0, 7)
+    ship2cp_j = random.randint(0, 8)
+    if matrixcp[ship2cp_j][ship2cp_i] != 0 or matrixcp[ship2cp_j][ship2cp_i + 1] !=0 or matrixcp[ship2cp_j][ship2cp_i + 2] != 0 or matrixcp[ship2cp_j + 1][ship2cp_i] != 0 or matrixcp[ship2cp_j + 1][ship2cp_i + 1] != 0 or matrixcp[ship2cp_j + 1][ship2cp_i + 2] != 0:
+        while matrixcp[ship2cp_j][ship2cp_i] != 0 or matrixcp[ship2cp_j][ship2cp_i + 1] !=0 or matrixcp[ship2cp_j][ship2cp_i + 2] != 0 or matrixcp[ship2cp_j + 1][ship2cp_i] != 0 or matrixcp[ship2cp_j + 1][ship2cp_i + 1] != 0 or matrixcp[ship2cp_j + 1][ship2cp_i + 2] != 0:
+            ship2cp_i = random.randint(0, 7)
+            ship2cp_j = random.randint(0, 8)
     ship2cp_x = matrix_x + 548.6 + 15 + ship2cp_i * cell_size
     ship2cp_y = matrix_y + 10 + ship2cp_j * cell_size
     matrixcp[ship2cp_j][ship2cp_i] = 2
+    matrixcp[ship2cp_j][ship2cp_i + 1] = 2
+    matrixcp[ship2cp_j][ship2cp_i + 2] = 2
+    matrixcp[ship2cp_j + 1][ship2cp_i] = 2
+    matrixcp[ship2cp_j + 1][ship2cp_i + 1] = 2
+    matrixcp[ship2cp_j + 1][ship2cp_i + 2] = 2
 
     global ship3
     ship3 = pygame.image.load('images/ship3.png')
-    ship3 = pygame.transform.scale(ship3, (40, 40))
-    ship3_i = random.randint(0, 9)
+    ship3 = pygame.transform.scale(ship3, (120, 40))
+    ship3_i = random.randint(0, 7)
     ship3_j = random.randint(0, 9)
     global ship3_x
     global ship3_y
+    if matrix[ship3_j][ship3_i] != 0 or matrix[ship3_j][ship3_i + 1] !=0 or matrix[ship3_j][ship3_i + 2] != 0:
+        while matrix[ship3_j][ship3_i] != 0 or matrix[ship3_j][ship3_i + 1] !=0 or matrix[ship3_j][ship3_i + 2] != 0:
+            ship3_i = random.randint(0, 7)
+            ship3_j = random.randint(0, 9)
     ship3_x = initial_value_x + ship3_i * cell_size
     ship3_y = initial_value_y + ship3_j * cell_size
     matrix[ship3_j][ship3_i] = 3
+    matrix[ship3_j][ship3_i + 1] = 3
+    matrix[ship3_j][ship3_i + 2] = 3
 
-    ship3cp_i = random.randint(0, 9)
+    ship3cp_i = random.randint(0, 7)
     ship3cp_j = random.randint(0, 9)
+    if matrixcp[ship3cp_j][ship3cp_i] != 0 or matrixcp[ship3cp_j][ship3cp_i + 1] !=0 or matrixcp[ship3cp_j][ship3cp_i + 2] != 0:
+        while matrixcp[ship3cp_j][ship3cp_i] != 0 or matrixcp[ship3cp_j][ship3cp_i + 1] !=0 or matrixcp[ship3cp_j][ship3cp_i +2] != 0:
+            ship3cp_i = random.randint(0, 7)
+            ship3cp_j = random.randint(0, 9)
+
     ship3cp_x = initial_value_x + 548.6 + ship3cp_i * cell_size
     ship3cp_y = initial_value_y + ship3cp_j * cell_size
     matrixcp[ship3cp_j][ship3cp_i] = 3
+    matrixcp[ship3cp_j][ship3cp_i + 1] = 3
+    matrixcp[ship3cp_j][ship3cp_i + 2] = 3
 
     for x in matrixcp:
         print(x)
@@ -145,6 +183,13 @@ def game():
 
     cursor_i = 0
     cursor_j = 0
+
+    contor1 = 4
+    contor1cp = 4
+    contor2 = 6
+    contor2cp = 6
+    contor3 = 3
+    contor3cp = 3
 
     global running
 
@@ -178,37 +223,73 @@ def game():
                     if matrix[cursor_j][cursor_i] == 1:
                         score = font.render("Hit : YES 1", True, (255, 255, 255))
                         show_ship1 = 1
-                        ship_left -= 1
+                        #ship_left -= 1
+                        contor1 -= 1
                         matrix[cursor_j][cursor_i] = -1
 
                     if matrix[cursor_j][cursor_i] == 2:
                         score = font.render("Hit : YES 2", True, (255, 255, 255))
                         show_ship2 = 1
-                        ship_left -= 1
+                        #ship_left -= 1
+                        contor2 -= 1
                         matrix[cursor_j][cursor_i] = -1
 
                     if matrix[cursor_j][cursor_i] == 3:
                         score = font.render("Hit : YES 3", True, (255, 255, 255))
                         show_ship3 = 1
-                        ship_left -= 1
+                        #ship_left -= 1
+                        contor3 -= 1
                         matrix[cursor_j][cursor_i] = -1
 
                     if matrix[cursor_j][cursor_i] == -1:
                         score = font.render("Hit : NO", True, (255, 255, 255))
 
+                    if contor1 == 0:
+                        show_ship1 = 1
+                        ship_left -= 1
+                        contor1 = -1
+
+                    if contor2 == 0:
+                        show_ship2 = 1
+                        ship_left -= 1
+                        contor2 = -1
+
+                    if contor3 == 0:
+                        show_ship3 = 1
+                        ship_left -= 1
+                        contor3 = -1
+
         if flag == 1:
             temp = bot(matrixcp)
             if temp == 1:
+                #ship_left_cp -= 1
+                #ship1cp_x = 0
+                #print(1)
+                contor1cp -= 1
+            if temp == 2:
+                #ship_left_cp -= 1
+                #ship2cp_x = 0
+                #print(2)
+                contor2cp -= 1
+            if temp == 3:
+                #ship_left_cp -= 1
+                #ship3cp_x = 0
+                #print(3)
+                contor3cp -= 1
+            if contor1cp == 0:
                 ship_left_cp -= 1
                 ship1cp_x = 0
+                contor1cp = -1
                 print(1)
-            if temp == 2:
+            if contor2cp == 0:
                 ship_left_cp -= 1
                 ship2cp_x = 0
                 print(2)
-            if temp == 3:
+                contor2cp = -1
+            if contor3cp == 0:
                 ship_left_cp -= 1
                 ship3cp_x = 0
+                contor3cp = -1
                 print(3)
             flag = 0
 
