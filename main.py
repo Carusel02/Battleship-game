@@ -7,6 +7,7 @@ import time
 from pygame import mixer
 # terminal colors
 from colorama import Fore
+
 print(Fore.RED + 'python game')
 # init
 pygame.init()
@@ -326,13 +327,25 @@ def show_ship(see_ship1, see_ship2, see_ship3, ship_remain, ship_remain_bot):
 # start menu
 def start_menu():
     font = pygame.font.Font('font/pixelated.ttf', 40)
-    start = font.render("PRESS S FOR START", True, (255, 255, 255))
+    start = font.render("PRESS                FOR START", True, (255, 255, 255))
     screen.fill((0, 0, 50))
     screen.blit(start, start.get_rect(center=screen.get_rect().center))
     vector_image = load_images('images')
-    image = pygame.transform.scale(vector_image[0], (40, 40))
+    image1 = pygame.transform.scale(vector_image[2], (90, 90))
+    image2 = pygame.transform.scale(vector_image[2], (100, 100))
+    image3 = pygame.transform.scale(vector_image[2], (110, 110))
+
     test = pygame.image.load('images/cancel.png')
-    screen.blit(image, (0, 0))
+    # create GIF animation for keycap S
+    screen.blit(image1, (500, 360))
+    pygame.display.update()
+    time.sleep(0.3)
+    screen.blit(image2, (495, 355))
+    pygame.display.update()
+    time.sleep(0.3)
+    screen.blit(image3, (490, 350))
+    pygame.display.update()
+    time.sleep(0.3)
 
 
 # load image
