@@ -5,6 +5,7 @@ import time
 
 # background sound
 from pygame import mixer
+
 # init
 pygame.init()
 # screen
@@ -13,8 +14,20 @@ screen = pygame.display.set_mode((1200, 800))
 pygame.display.set_caption("World Domination")
 icon = pygame.image.load('images/icon.png')
 pygame.display.set_icon(icon)
+# font
+font = pygame.font.Font('font/pixelated.ttf', 30)
 # run program
 running = 1
+# declare global variables
+matrix_x = 70
+matrix_y = 100
+pos_x = matrix_x + 15
+pos_y = matrix_y + 10
+# declare boats
+ship1 = pygame.image.load('images/ship1.png')
+ship2 = pygame.image.load('images/ship2.png')
+ship3 = pygame.image.load('images/ship3.png')
+
 
 # function game
 def game():
@@ -22,20 +35,18 @@ def game():
     mixer.music.load('sound/background_mitopia_ost.wav')
     mixer.music.set_volume(0.3)
     mixer.music.play(-1)
-
+    # global variables
+    global matrix_x
+    global matrix_y
+    global pos_x
+    global pos_y
     flag = 0
     ship_left = 3
     ship_left_cp = 3
     # image
     matrix_image = pygame.image.load('images/matrice_back.png')
     matrix_image = pygame.transform.scale(matrix_image, (498.6, 495))
-    global matrix_x
-    global matrix_y
-    matrix_x = 70
-    matrix_y = 100
     # 'X' pos
-    pos_x = matrix_x + 15
-    pos_y = matrix_y + 10
     pos = pygame.image.load('images/cancel.png')
     pos = pygame.transform.scale(pos, (40, 40))
     # 'X' not_here
@@ -50,7 +61,7 @@ def game():
     hit_here = pygame.transform.scale(hit_here, (40, 40))
     # score
     global font
-    font = pygame.font.Font('font/pixelated.ttf', 30)
+
     score = font.render("Hit : NO", True, (255, 255, 255))
     score_display = font.render("Scor user: " + str(3 - ship_left) + "Scor bot: " + str(3 - ship_left_cp), True,
                                 (255, 255, 255))
@@ -61,7 +72,7 @@ def game():
     cell_size = 48.2
     # ships
     global ship1
-    ship1 = pygame.image.load('images/ship1.png')
+
     ship1 = pygame.transform.scale(ship1, (160, 40))
     ship1_i = random.randint(0, 6)
     ship1_j = random.randint(0, 9)
@@ -84,17 +95,17 @@ def game():
     matrixcp[ship1cp_j][ship1cp_i + 3] = 1
 
     global ship2
-    ship2 = pygame.image.load('images/ship2.png')
+
     ship2 = pygame.transform.scale(ship2, (120, 80))
     ship2_i = random.randint(0, 7)
     ship2_j = random.randint(0, 8)
     global ship2_x
     global ship2_y
-    if matrix[ship2_j][ship2_i] != 0 or matrix[ship2_j][ship2_i + 1] != 0 or matrix[ship2_j][ship2_i + 2] != 0 or \
-            matrix[ship2_j + 1][ship2_i] != 0 or matrix[ship2_j + 1][ship2_i + 1] != 0 or matrix[ship2_j + 1][
+    if matrix[ship2_j][ship2_i] or matrix[ship2_j][ship2_i + 1]or matrix[ship2_j][ship2_i + 2] or \
+            matrix[ship2_j + 1][ship2_i] or matrix[ship2_j + 1][ship2_i + 1] or matrix[ship2_j + 1][
         ship2_i + 2] != 0:
-        while matrix[ship2_j][ship2_i] != 0 or matrix[ship2_j][ship2_i + 1] != 0 or matrix[ship2_j][ship2_i + 2] != 0 or \
-                matrix[ship2_j + 1][ship2_i] != 0 or matrix[ship2_j + 1][ship2_i + 1] != 0 or matrix[ship2_j + 1][
+        while matrix[ship2_j][ship2_i] or matrix[ship2_j][ship2_i + 1] or matrix[ship2_j][ship2_i + 2] or \
+                matrix[ship2_j + 1][ship2_i] or matrix[ship2_j + 1][ship2_i + 1] or matrix[ship2_j + 1][
             ship2_i + 2] != 0:
             ship2_i = random.randint(0, 7)
             ship2_j = random.randint(0, 8)
@@ -127,7 +138,7 @@ def game():
     matrixcp[ship2cp_j + 1][ship2cp_i + 2] = 2
 
     global ship3
-    ship3 = pygame.image.load('images/ship3.png')
+
     ship3 = pygame.transform.scale(ship3, (120, 40))
     ship3_i = random.randint(0, 7)
     ship3_j = random.randint(0, 9)
@@ -326,6 +337,7 @@ def game():
         # refresh display
         pygame.display.update()
 
+
 # bot function for hitting
 def bot(matrix):
     while 1:
@@ -421,6 +433,7 @@ def end_menu(image, sound):
         ok += 1
         if ok == 6:
             run = 0
+
 
 # start menu
 def start_menu():
