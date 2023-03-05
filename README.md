@@ -11,7 +11,7 @@
 
 ## Limbaje/ tehnologii folosite: 
 * libraria `pygame` pentru construirea efectiva a jocului
-* libraria `random` pentru generari mutari
+* libraria `random` pentru generarea mutarilor
 * libraria `time` pentru sincronizarea actiunilor prin sleep uri
 
 ## Instructiuni rulare/folosire:
