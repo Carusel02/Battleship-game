@@ -29,5 +29,3 @@
 * afisare animatii -> rezolvare prin suprapunere imagini redimensionate
 * bug uri -> rezolvare naturala
 
-## Link proiect GITHUB:
-* https://github.com/Carusel02/Python
