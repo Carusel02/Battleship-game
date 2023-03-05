@@ -450,9 +450,10 @@ def start_menu():
     vector_image = load_images('images')
     battle_ship = pygame.transform.scale(vector_image[0], (700, 500))
     screen.blit(battle_ship, (240, -50))
-    image1 = pygame.transform.scale(vector_image[5], (90, 90))
-    image2 = pygame.transform.scale(vector_image[5], (100, 100))
-    image3 = pygame.transform.scale(vector_image[5], (110, 110))
+    fix_image_start = pygame.image.load('images/keycapS.png')
+    image1 = pygame.transform.scale(fix_image_start, (90, 90))
+    image2 = pygame.transform.scale(fix_image_start, (100, 100))
+    image3 = pygame.transform.scale(fix_image_start, (110, 110))
 
     diana = font_name.render("DIANA MARIA STEFAN", True, (255, 255, 255))
     mary = font_name.render("MARIA CRISTINA COSTEA", True, (255, 255, 255))
