@@ -29,3 +29,8 @@
 * afisare animatii -> rezolvare prin suprapunere imagini redimensionate
 * bug uri -> rezolvare naturala
 
+## Demo:
+https://github.com/Carusel02/Battleship-game/assets/40697296/1cad7984-bb64-4613-ac72-bdcdedb0d67b
+
+
+
